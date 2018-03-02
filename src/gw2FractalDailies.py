@@ -1,12 +1,18 @@
+#Discord specific
 import discord 
 from discord.ext import commands
+
+#Helper Libraries
 from urllib.request import urlopen
 import json
 from pprint import pprint
-import secret
 from operator import itemgetter
 
-bot = commands.Bot(command_prefix='-', description='testss')
+#Utils
+import strings
+import secret
+
+bot = commands.Bot(command_prefix='-', description=strings.helpDescription)
 tomorrowsDailies = urlopen("https://api.guildwars2.com/v2/achievements/daily/tomorrow")
 data = json.load(tomorrowsDailies)
 
@@ -15,9 +21,9 @@ async def on_ready():
     print('Logged in as')
     print(bot.user.name)
 
-@bot.command()
+@bot.command(hidden=True)
 async def theEternal():
-    await bot.say('sup Obi')
+    await bot.say(strings.obi)
 
 @bot.command()
 async def info():
@@ -27,7 +33,7 @@ async def info():
 async def helpMe():
     await bot.say('```only current command: !tomorrowsFractals```')
 
-@bot.command()
+@bot.command(help=strings.tomorrowsFractalsDescription)
 async def tomorrowsFractals():
     results = []
     formattedResults = None
@@ -37,9 +43,9 @@ async def tomorrowsFractals():
             tomorrowsFractalsData = json.load(readTomorrowsFractals)
             results.append(tomorrowsFractalsData[0]['name'])
     formattedResults = "\n".join(itemgetter(0,1,5,9,13,14)(results))
-    await bot.say(formattedResults)
+    await bot.say('```' + formattedResults + '```')
 
-@bot.command()
+@bot.command(hidden=True)
 async def PlatMichelleT4s():
     results = []
     formattedResults = None
