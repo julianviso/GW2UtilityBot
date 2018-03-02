@@ -21,18 +21,16 @@ async def on_ready():
     print('Logged in as')
     print(bot.user.name)
 
+#Easter Eggs
 @bot.command(hidden=True)
 async def theEternal():
     await bot.say(strings.obi)
 
-@bot.command()
-async def info():
-    await bot.say('Bot created by Valrok. If you have feedback or suggestions on new features contact me on discord Valrok.3742 or in game.')
+@bot.command(hidden=True)
+async def michelle():
+    await bot.say(strings.michelle)
 
-@bot.command()
-async def helpMe():
-    await bot.say('```only current command: !tomorrowsFractals```')
-
+#Main command
 @bot.command(help=strings.tomorrowsFractalsDescription)
 async def tomorrowsFractals():
     results = []
