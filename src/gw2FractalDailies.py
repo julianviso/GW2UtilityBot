@@ -55,6 +55,6 @@ async def PlatMichelleT4s():
             tomorrowsFractalsData = json.load(readTomorrowsFractals)
             results.append(tomorrowsFractalsData[0]['name'])
     formattedResults = "\n".join(itemgetter(0,1,5,9,13,14)(results))
-    await bot.say('```Lets go baby!!!\n\n' + formattedResults + '```')
+    await bot.say('```"Lets go baby!!!"\n\n' + formattedResults + '```')
     
 bot.run(secret.client_secret)
