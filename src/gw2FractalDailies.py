@@ -8,6 +8,7 @@ import json
 from pprint import pprint
 from operator import itemgetter
 from datetime import datetime
+import feedparser
 
 #Utils
 import strings
@@ -61,5 +62,10 @@ async def tomorrowsFractals():
 @bot.command(help=strings.serverTimeDescription)
 async def serverTime():
     await bot.say('```Server time: ' + datetime.utcnow().strftime("%I:%M%p") + '```')
+
+@bot.command(help=strings.releaseNotesDescription)
+async def releaseNotes():
+    newestPost = feedparser.parse('https://www.guildwars2.com/en/feed')
+    await bot.say(newestPost.entries[0]['link'])
 
 bot.run(secret.client_secret)
