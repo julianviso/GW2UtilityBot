@@ -2,17 +2,12 @@
 import discord 
 from discord.ext import commands
 
-#Helper Libraries
-from urllib.request import urlopen
-import json
-from pprint import pprint
-from operator import itemgetter
-from datetime import datetime
-import feedparser
-
 #Utils
 import strings
 import secret
+
+#Specifies what extensions to load when the bot starts up from this directory
+startup_extensions = ["easterEggs", "fractals", "server"]
 
 bot = commands.Bot(command_prefix='-', description=strings.helpDescription)
 
@@ -21,51 +16,26 @@ async def on_ready():
     print('Logged in as')
     print(bot.user.name)
 
-#Easter Eggs
-@bot.command(hidden=True)
-async def theEternal():
-    await bot.say(strings.obi)
+@bot.command()
+async def load(extension_name : str):
+    try:
+        bot.load_extension(extension_name)
+    except (AttributeError, ImportError) as e:
+        await bot.say("```py\n{}: {}\n```".format(type(e).__name__, str(e)))
+        return
+    await bot.say("{} loaded.".format(extension_name))
 
-@bot.command(hidden=True)
-async def michelle():
-    await bot.say(strings.michelle)
+@bot.command()
+async def unload(extension_name : str):
+    bot.unload_extension(extension_name)
+    await bot.say("{} unloaded.".format(extension_name))
 
-@bot.command(hidden=True)
-async def PlatMichelleT4s():
-    tomorrowsDailies = urlopen("https://api.guildwars2.com/v2/achievements/daily/tomorrow")
-    data = json.load(tomorrowsDailies)
-    results = []
-    formattedResults = None
-    for fractalData in data['fractals']:  
-        for ids in [fractalData['id']]:
-            readTomorrowsFractals = urlopen("https://api.guildwars2.com/v2/achievements?ids="+str(ids))
-            tomorrowsFractalsData = json.load(readTomorrowsFractals)
-            results.append(tomorrowsFractalsData[0]['name'])
-    formattedResults = "\n".join(itemgetter(0,1,5,9,13,14)(results))
-    await bot.say('```"Lets go baby!!!"\n\n' + formattedResults + '```')
-
-#Main command
-@bot.command(help=strings.tomorrowsFractalsDescription)
-async def tomorrowsFractals():
-    tomorrowsDailies = urlopen("https://api.guildwars2.com/v2/achievements/daily/tomorrow")
-    data = json.load(tomorrowsDailies)
-    results = []
-    formattedResults = None
-    for fractalData in data['fractals']:  
-        for ids in [fractalData['id']]:
-            readTomorrowsFractals = urlopen("https://api.guildwars2.com/v2/achievements?ids="+str(ids))
-            tomorrowsFractalsData = json.load(readTomorrowsFractals)
-            results.append(tomorrowsFractalsData[0]['name'])
-    formattedResults = "\n".join(itemgetter(0,1,5,9,13,14)(results))
-    await bot.say('```' + formattedResults + '```')
-
-@bot.command(help=strings.serverTimeDescription)
-async def serverTime():
-    await bot.say('```Server time: ' + datetime.utcnow().strftime("%I:%M%p") + '```')
-
-@bot.command(help=strings.releaseNotesDescription)
-async def releaseNotes():
-    newestPost = feedparser.parse('https://www.guildwars2.com/en/feed')
-    await bot.say(newestPost.entries[0]['link'])
+if __name__ == "__main__":
+    for extension in startup_extensions:
+        try:
+            bot.load_extension(extension)
+        except Exception as e:
+            exc = '{}: {}'.format(type(e).__name__, e)
+            print('Failed to load extension {}\n{}'.format(extension, exc))
 
 bot.run(secret.client_secret)

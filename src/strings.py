@@ -3,7 +3,7 @@ helpDescription = "Bot created by Valrok.3742 if you have any questions, or feed
 tomorrowsFractalsDescription = "Prints out the fractal dailies for the following server reset"
 serverTimeDescription = "Prints out current server time"
 releaseNotesDescription = "Prints out url to latest release notes"
+dailyFractalsDescription = "Prints out today's fractal dailies"
 
-#bot commands
-obi = "```Sup Obi```"
+#easter eggs
 michelle = "```Reeeeeeeeeeeeeeeee```"
