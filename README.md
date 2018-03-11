@@ -1,2 +1,2 @@
 # GW2FractalDailies
-Simple discord bot that calls Arena Net's APIs for fractal dailies information.
+Simple discord bot that makes various API calls for Guild Wars 2.
