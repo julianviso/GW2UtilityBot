@@ -7,5 +7,23 @@
     "[&BJQHAAA=][&BMwCAAA=][&BJsCAAA=][&BNUGAAA=][&BHsBAAA=][&BNMAAAA=]",
     "[&BH8HAAA=][&BLkCAAA=][&BBEDAAA=][&BJIBAAA=][&BEICAAA=][&BBABAAA=]",
     "[&BIkHAAA=][&BDoBAAA=][&BO4CAAA=][&BC0AAAA=][&BIUCAAA=][&BCECAAA=]"
+  ],
+  "gathering_nodes": [
+    {
+        "name": "Rich Iron",
+        "waypoints": "[&BEsBAAA=][&BP0BAAA=][&BF4BAAA=][&BL8AAAA=][&BFEGAAA=][&BJMBAAA=][&BKsAAAA=][&BAQAAAA=][&BGMAAAA=]"
+    },
+    {
+        "name": "Rich Platinum",
+        "waypoints": "[&BO8BAAA=][&BO4BAAA=][&BBoCAAA=][&BB4CAAA=][&BFECAAA=][&BNQCAAA=][&BMkCAAA=][&BMwBAAA=][&BMkBAAA=][&BK0BAAA=]"
+    },
+    {
+        "name": "Elder Wood",
+        "waypoints": "[&BPgCAAA=][&BKYCAAA=]"
+    },
+    {
+        "name": "Flax",
+        "waypoints": "[&BOAHAAA=][&BAUIAAA=][&BM0JAAA=]"
+    }
   ]
 }

@@ -9,7 +9,7 @@ from operator import itemgetter
 #Utils
 import strings
 
-class Fractals():
+class Dailies():
     def __init__(self, bot):
         self.bot = bot
 
@@ -41,6 +41,19 @@ class Fractals():
         formattedResults = "\n".join(itemgetter(0,1,5,9,13,14)(results))
         await self.bot.say('```' + formattedResults + '```')
 
+    @commands.command(help=strings.gatheringNodesDescription)
+    async def gatheringNodes(self):
+        output = []
+        with open('data.json') as json_data:
+            data = json.load(json_data)
+        for gatheringNodes in data['gathering_nodes']:
+            name = gatheringNodes['name']
+            waypoints = gatheringNodes['waypoints']
+            output.extend((name, waypoints))
+        message = str(output[0]) + "\n\n" + str(output[1]) + "\n\n" + str(output[2]) + "\n\n" + str(output[3]) + "\n\n" + str(output[4]) + \
+            "\n\n" + str(output[5]) + "\n\n" + str(output[6]) + "\n\n" + str(output[7])
+        await self.bot.say('```\nRich Gathering Node Waypoints\n\n' + message + "```")
+
 
 def setup(bot):
-    bot.add_cog(Fractals(bot))
+    bot.add_cog(Dailies(bot))
