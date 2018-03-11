@@ -7,7 +7,7 @@ import strings
 import secret
 
 #Specifies what extensions to load when the bot starts up from this directory
-startup_extensions = ["easterEggs", "fractals", "server"]
+startup_extensions = ["easterEggs", "fractals", "timers"]
 
 bot = commands.Bot(command_prefix='-', description=strings.helpDescription)
 
@@ -16,7 +16,7 @@ async def on_ready():
     print('Logged in as')
     print(bot.user.name)
 
-@bot.command()
+@bot.command(hidden=True)
 async def load(extension_name : str):
     try:
         bot.load_extension(extension_name)
@@ -25,7 +25,7 @@ async def load(extension_name : str):
         return
     await bot.say("{} loaded.".format(extension_name))
 
-@bot.command()
+@bot.command(hidden=True)
 async def unload(extension_name : str):
     bot.unload_extension(extension_name)
     await bot.say("{} unloaded.".format(extension_name))
