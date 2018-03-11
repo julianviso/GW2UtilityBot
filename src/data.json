@@ -7,5 +7,83 @@
     "[&BJQHAAA=][&BMwCAAA=][&BJsCAAA=][&BNUGAAA=][&BHsBAAA=][&BNMAAAA=]",
     "[&BH8HAAA=][&BLkCAAA=][&BBEDAAA=][&BJIBAAA=][&BEICAAA=][&BBABAAA=]",
     "[&BIkHAAA=][&BDoBAAA=][&BO4CAAA=][&BC0AAAA=][&BIUCAAA=][&BCECAAA=]"
+  ],
+  "gathering_nodes": [
+    {
+        "name": "Iron Marches",
+        "waypoint": "[&BO8BAAA=][&BO4BAAA=]"
+    },
+    {
+        "name": "Diessa Plateau",
+        "waypoint": "&BF4BAAA=]"
+    },
+    {
+        "name": "Fireheart Rise",
+        "waypoint": "[&BBoCAAA=][&BB4CAAA=]"
+    },
+    {
+        "name": "Snowden Drifts",
+        "waypoint": "[&BL8AAAA=]"
+    },
+    {
+        "name": "Lornars Pass",
+        "waypoint": "[&BFEGAAA=]"
+    },
+    {
+        "name": "Dredgehaunt Cliffs",
+        "waypoint": "[&BGUCAAA=]"
+    },
+    {
+        "name": "Timberline Falls",
+        "waypoint": "[&BFECAAA=]"
+    },
+    {
+        "name": "Mount Maelstrom",
+        "waypoint": "[&BNQCAAA=][&BMkCAAA=]"
+    },
+    {
+        "name": "Straits Of Devastation",
+        "waypoint": "[&BPgCAAA=]"
+    },
+    {
+        "name": "Malchors Leap",
+        "waypoint": "[&BKYCAAA=]"
+    },
+    {
+        "name": "Sparkfly Fen",
+        "waypoint": "[&BMwBAAA=][&BMkBAAA=]"
+    },
+    {
+        "name": "Bloodtide Coast",
+        "waypoint": "[&BK0BAAA=]"
+    },
+    {
+        "name": "Gendarran Fields",
+        "waypoint": "[&BJMBAAA=][&BOQAAAA=]"
+    },
+    {
+        "name": "Harathi Hinterlands",
+        "waypoint": "[&BKsAAAA=]"
+    },
+    {
+        "name": "Brisban Wildlands",
+        "waypoint": "[&BFwAAAA=][&BGMAAAA=]"
+    },
+    {
+        "name": "Verdant Brink",
+        "waypoint": "[&BOAHAAA=]"
+    },
+    {
+        "name": "Tangled Depths",
+        "waypoint": "[&BAUIAAA=]"
+    },
+    {
+        "name": "Draconis Mons",
+        "waypoint": "[&BM0JAAA=]"
+    },
+    {
+        "name": "Ember Bay",
+        "waypoint": "[&BF8JAAA=]"
+    }
   ]
 }
