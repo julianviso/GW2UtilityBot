@@ -4,6 +4,7 @@ tomorrowsFractalsDescription = "Prints out the fractal dailies for the following
 serverTimeDescription = "Prints out current server time"
 releaseNotesDescription = "Prints out url to latest release notes"
 dailyFractalsDescription = "Prints out today's fractal dailies"
+psnaDescription = "Prints daily pact supply network waypoints"
 
 #easter eggs
 michelle = "```Reeeeeeeeeeeeeeeee```"

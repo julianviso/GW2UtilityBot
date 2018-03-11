@@ -22,13 +22,13 @@ class Server():
         newestPost = feedparser.parse('https://www.guildwars2.com/en/feed')
         await self.bot.say(newestPost.entries[0]['link'])
 
-    @commands.command()
+    @commands.command(help=strings.psnaDescription)
     async def psna(self):
         #Monday is 0, Sunday is 6
         day = datetime.today().weekday()
         with open('data.json') as json_data:
             data = json.load(json_data)
-        await self.bot.say('```' + data['pact_supply_network_agent'][day] + '```')
+        await self.bot.say('```\n Daily Pact Supply Network Agent \n' + data['pact_supply_network_agent'][day] + '```')
 
 def setup(bot):
     bot.add_cog(Server(bot))
