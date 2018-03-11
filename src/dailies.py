@@ -43,9 +43,15 @@ class Dailies():
 
     @commands.command()
     async def gatheringNodes(self):
+        output = []
         with open('data.json') as json_data:
             data = json.load(json_data)
-        await self.bot.say('```\nRich Gathering Nodes\n' + data['gathering_nodes'] + '```')
+        for gatheringNodes in data['gathering_nodes']:
+            name = gatheringNodes['name']
+            waypoints = gatheringNodes['waypoints']
+            output.append((name, waypoints))
+        message = str(output[0]) + "\n\n" + str(output[1]) + "\n\n" + str(output[2]) + "\n\n" + str(output[3])
+        await self.bot.say('```\nRich Gathering Node Waypoints\n\n' + message + "```")
 
 
 def setup(bot):
