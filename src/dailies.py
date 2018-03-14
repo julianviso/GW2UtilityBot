@@ -41,6 +41,32 @@ class Dailies():
         formattedResults = "\n".join(itemgetter(0,1,5,9,13,14)(results))
         await self.bot.say('```' + formattedResults + '```')
 
+    @commands.command()
+    async def dailyPVE(self):
+        todaysDailies = urlopen("https://api.guildwars2.com/v2/achievements/daily")
+        results = []
+        data = json.load(todaysDailies)
+        for pveData in data['pve']:
+            for ids in [pveData['id']]:
+                readDailyPVE = urlopen("https://api.guildwars2.com/v2/achievements?ids="+str(ids))
+                todaysDailyPVE = json.load(readDailyPVE)
+                results.append(todaysDailyPVE[0]['name'])
+        formattedResults = "\n".join(results)
+        await self.bot.say('```' + formattedResults + '```')
+
+    @commands.command()
+    async def tomorrowsPVE(self):
+        tomorrowsDailies = urlopen("https://api.guildwars2.com/v2/achivements/daily/tomorrow")
+        data = json.load(tomorrowsDailies)
+        results = []
+        for pveData in data['pve']:
+            for ids in [pveData['id']]:
+                readTomorrowsPVE = urlopen("https://api.guildwars2.com/v2/achievements?ids="+str(ids))
+                tomorrowsPVEData = json.load(readTomorrowsPVE)
+                results.append(tomorrowsPVEData[0]['name'])
+        formattedResults = "\n".join(results)
+        await self.bot.say('```' + formattedResults + '```')
+
     @commands.command(help=strings.gatheringNodesDescription)
     async def gatheringNodes(self):
         output = []
@@ -53,7 +79,6 @@ class Dailies():
         message = str(output[0]) + "\n\n" + str(output[1]) + "\n\n" + str(output[2]) + "\n\n" + str(output[3]) + "\n\n" + str(output[4]) + \
             "\n\n" + str(output[5]) + "\n\n" + str(output[6]) + "\n\n" + str(output[7])
         await self.bot.say('```\nRich Gathering Node Waypoints\n\n' + message + "```")
-
-
+   
 def setup(bot):
     bot.add_cog(Dailies(bot))
