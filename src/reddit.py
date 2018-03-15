@@ -25,6 +25,16 @@ class Reddit():
         await self.bot.say(subreddit.url)
 
     @commands.command(pass_context=True)
+    async def Kat(self, ctx):
+        subreddit = reddit.subreddit('cat').random()
+        await self.bot.say(subreddit.url)
+
+    @commands.command(pass_context=True, hidden=True)
+    async def luce(self, ctx):
+        subreddit = reddit.subreddit('corgibutts').random()
+        await self.bot.say(subreddit.url)
+
+    @commands.command(pass_context=True)
     async def prequels(self, ctx):
         subreddit = reddit.subreddit('PrequelMemes').random()
         await self.bot.say(subreddit.url)
