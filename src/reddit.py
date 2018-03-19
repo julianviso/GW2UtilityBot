@@ -64,5 +64,10 @@ class Reddit():
         subreddit = reddit.subreddit('dankmemes').random()
         await self.bot.say(subreddit.url)
 
+    @commands.command(pass_context=True)
+    async def wholesome(self, ctx):
+        subreddit = reddit.subreddit('wholesomememes').random()
+        await self.bot.say(subreddit.url)
+
 def setup(bot):
     bot.add_cog(Reddit(bot))
