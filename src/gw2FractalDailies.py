@@ -7,7 +7,7 @@ import strings
 import secret
 
 #Specifies what extensions to load when the bot starts up from this directory
-startup_extensions = ["easterEggs", "dailies", "timers", "reddit"]
+startup_extensions = ["easterEggs", "dailies", "timers"]
 
 bot = commands.Bot(command_prefix='-', description=strings.helpDescription)
 

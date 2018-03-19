@@ -8,4 +8,4 @@ psnaDescription = "Prints daily pact supply network waypoints"
 gatheringNodesDescription = "Prints waypoints to profitable rich gathering nodes"
 
 #easter eggs
-michelle = "```Reeeeeeeeeeeeeeeee```"
+platQuote = "Let's go baby!!!"
