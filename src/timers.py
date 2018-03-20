@@ -13,22 +13,19 @@ class Server():
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(help=strings.serverTimeDescription)
-    async def serverTime(self):
+    @commands.group(name="server", pass_context=True)
+    async def server(self, ctx):
+        if ctx.invoked_subcommand is None:
+            await self.bot.say('```' + strings.noCommandFound + '```')
+
+    @server.command(name="time", pass_context=True, help=strings.serverTimeDescription)
+    async def serverTime(self, ctx):
         await self.bot.say('```Server time: ' + datetime.utcnow().strftime("%I:%M%p") + '```')
 
-    @commands.command(help=strings.releaseNotesDescription)
-    async def releaseNotes(self):
+    @server.command(name="news", pass_context=True, help=strings.releaseNotesDescription)
+    async def releaseNotes(self, ctx):
         newestPost = feedparser.parse('https://www.guildwars2.com/en/feed')
         await self.bot.say(newestPost.entries[0]['link'])
-
-    @commands.command(help=strings.psnaDescription)
-    async def psna(self):
-        #Monday is 0, Sunday is 6
-        day = datetime.today().weekday()
-        with open('data.json') as json_data:
-            data = json.load(json_data)
-        await self.bot.say('```\n Daily Pact Supply Network Agent \n' + data['pact_supply_network_agent'][day] + '```')
 
 def setup(bot):
     bot.add_cog(Server(bot))

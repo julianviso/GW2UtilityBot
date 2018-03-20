@@ -5,6 +5,7 @@ from discord.ext import commands
 from urllib.request import urlopen
 import json
 from operator import itemgetter
+from datetime import datetime
 
 #Utils
 import strings
@@ -13,8 +14,14 @@ class Dailies():
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(help=strings.tomorrowsFractalsDescription)
-    async def tomorrowsFractals(self):
+    @commands.group(name="daily", pass_context=True)
+    async def daily(self, ctx):
+        if ctx.invoked_subcommand is None:
+            await self.bot.say('```' + strings.noCommandFound + '```')
+
+
+    @daily.command(name="tomorrowsFractals", pass_context=True, help=strings.tomorrowsFractalsDescription)
+    async def tomorrowsFractals(self, ctx):
         tomorrowsDailies = urlopen("https://api.guildwars2.com/v2/achievements/daily/tomorrow")
         data = json.load(tomorrowsDailies)
         results = []
@@ -27,8 +34,8 @@ class Dailies():
         formattedResults = "\n".join(itemgetter(0,1,5,9,13,14)(results))
         await self.bot.say('```' + formattedResults + '```')
 
-    @commands.command(help=strings.dailyFractalsDescription)
-    async def dailyFractals(self):
+    @daily.command(name="fractals", pass_context=True, help=strings.dailyFractalsDescription)
+    async def dailyFractals(self, ctx):
         todaysDailies = urlopen("https://api.guildwars2.com/v2/achievements/daily")
         data = json.load(todaysDailies)
         results = []
@@ -41,8 +48,8 @@ class Dailies():
         formattedResults = "\n".join(itemgetter(0,1,5,9,13,14)(results))
         await self.bot.say('```' + formattedResults + '```')
 
-    @commands.command()
-    async def dailyPVE(self):
+    @daily.command(name="pve", pass_context=True)
+    async def dailyPVE(self, ctx):
         todaysDailies = urlopen("https://api.guildwars2.com/v2/achievements/daily")
         results = []
         data = json.load(todaysDailies)
@@ -54,8 +61,8 @@ class Dailies():
         formattedResults = "\n".join(results)
         await self.bot.say('```' + formattedResults + '```')
 
-    @commands.command()
-    async def tomorrowsPVE(self):
+    @daily.command(name="tomorrowsPVE", pass_context=True)
+    async def tomorrowsPVE(self, ctx):
         tomorrowsDailies = urlopen("https://api.guildwars2.com/v2/achievements/daily/tomorrow")
         data = json.load(tomorrowsDailies)
         results = []
@@ -67,8 +74,8 @@ class Dailies():
         formattedResults = "\n".join(results)
         await self.bot.say('```' + formattedResults + '```')
 
-    @commands.command()
-    async def dailyPVP(self):
+    @daily.command(name="pvp", pass_context=True)
+    async def dailyPVP(self, ctx):
         todaysPVP = urlopen("https://api.guildwars2.com/v2/achievements/daily")
         data = json.load(todaysPVP)
         results = []
@@ -80,8 +87,8 @@ class Dailies():
         formattedResults = "\n".join(results)
         await self.bot.say('```' + formattedResults + '```')
 
-    @commands.command()
-    async def tomorrowsPVP(self):
+    @daily.command(name="tomorrowsPVP", pass_context=True)
+    async def tomorrowsPVP(self, ctx):
         tomorrowsDailies = urlopen("https://api.guildwars2.com/v2/achievements/daily/tomorrow")
         data = json.load(tomorrowsDailies)
         results = []
@@ -93,8 +100,8 @@ class Dailies():
         formattedResults = "\n".join(results)
         await self.bot.say('```' + formattedResults + '```')
 
-    @commands.command()
-    async def dailyWVW(self):
+    @daily.command(name="wvw", pass_context=True)
+    async def dailyWVW(self, ctx):
         todaysWVW = urlopen("https://api.guildwars2.com/v2/achievements/daily")
         data = json.load(todaysWVW)
         results = []
@@ -106,8 +113,8 @@ class Dailies():
         formattedResults = "\n".join(results)
         await self.bot.say('```' + formattedResults + '```')
 
-    @commands.command()
-    async def tomorrowsWVW(self):
+    @daily.command(name="tomorrowsWVW", pass_context=True)
+    async def tomorrowsWVW(self, ctx):
         tomorrowsDailies = urlopen("https://api.guildwars2.com/v2/achievements/daily/tomorrow")
         data = json.load(tomorrowsDailies)
         results = []
@@ -118,6 +125,15 @@ class Dailies():
                 results.append(tomorrowsWVWData[0]['name'])
         formattedResults = "\n".join(results)
         await self.bot.say('```' + formattedResults + '```')
+
+    @daily.command(name="psna", pass_context=True, help=strings.psnaDescription)
+    async def psna(self, ctx):
+        #Monday is 0, Sunday is 6
+        day = datetime.today().weekday()
+        with open('data.json') as json_data:
+            data = json.load(json_data)
+        await self.bot.say('```\nDaily Pact Supply Network Agent \n' + data['pact_supply_network_agent'][day] + '```')
+
 
     @commands.command(help=strings.gatheringNodesDescription)
     async def gatheringNodes(self):

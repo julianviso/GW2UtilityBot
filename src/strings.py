@@ -7,5 +7,8 @@ dailyFractalsDescription = "Prints out today's fractal dailies"
 psnaDescription = "Prints daily pact supply network waypoints"
 gatheringNodesDescription = "Prints waypoints to profitable rich gathering nodes"
 
+#Errors
+noCommandFound = "Command not found. Type -help for list of available commands."
+
 #easter eggs
 platQuote = "Let's go baby!!!"
