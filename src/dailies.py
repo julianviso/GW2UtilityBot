@@ -56,7 +56,7 @@ class Dailies():
 
     @commands.command()
     async def tomorrowsPVE(self):
-        tomorrowsDailies = urlopen("https://api.guildwars2.com/v2/achivements/daily/tomorrow")
+        tomorrowsDailies = urlopen("https://api.guildwars2.com/v2/achievements/daily/tomorrow")
         data = json.load(tomorrowsDailies)
         results = []
         for pveData in data['pve']:
