@@ -67,6 +67,58 @@ class Dailies():
         formattedResults = "\n".join(results)
         await self.bot.say('```' + formattedResults + '```')
 
+    @commands.command()
+    async def dailyPVP(self):
+        todaysPVP = urlopen("https://api.guildwars2.com/v2/achievements/daily")
+        data = json.load(todaysPVP)
+        results = []
+        for pvpData in data['pvp']:
+            for ids in [pvpData['id']]:
+                readDailyPVP = urlopen("https://api.guildwars2.com/v2/achievements?ids="+str(ids))
+                todaysDailyPVP = json.load(readDailyPVP)
+                results.append(todaysDailyPVP[0]['name'])
+        formattedResults = "\n".join(results)
+        await self.bot.say('```' + formattedResults + '```')
+
+    @commands.command()
+    async def tomorrowsPVP(self):
+        tomorrowsDailies = urlopen("https://api.guildwars2.com/v2/achievements/daily/tomorrow")
+        data = json.load(tomorrowsDailies)
+        results = []
+        for pvpData in data['pvp']:
+            for ids in [pvpData['id']]:
+                readTomorrowsPVP = urlopen("https://api.guildwars2.com/v2/achievements?ids="+str(ids))
+                tomorrowsPVPData = json.load(readTomorrowsPVP)
+                results.append(tomorrowsPVPData[0]['name'])
+        formattedResults = "\n".join(results)
+        await self.bot.say('```' + formattedResults + '```')
+
+    @commands.command()
+    async def dailyWVW(self):
+        todaysWVW = urlopen("https://api.guildwars2.com/v2/achievements/daily")
+        data = json.load(todaysWVW)
+        results = []
+        for wvwData in data['wvw']:
+            for ids in [wvwData['id']]:
+                readDailyWVW = urlopen("https://api.guildwars2.com/v2/achievements?ids="+str(ids))
+                todaysDailyWVW = json.load(readDailyWVW)
+                results.append(todaysDailyWVW[0]['name'])
+        formattedResults = "\n".join(results)
+        await self.bot.say('```' + formattedResults + '```')
+
+    @commands.command()
+    async def tomorrowsWVW(self):
+        tomorrowsDailies = urlopen("https://api.guildwars2.com/v2/achievements/daily/tomorrow")
+        data = json.load(tomorrowsDailies)
+        results = []
+        for wvwData in data['wvw']:
+            for ids in [wvwData['id']]:
+                readTomorrowsWVW = urlopen("https://api.guildwars2.com/v2/achievements?ids="+str(ids))
+                tomorrowsWVWData = json.load(readTomorrowsWVW)
+                results.append(tomorrowsWVWData[0]['name'])
+        formattedResults = "\n".join(results)
+        await self.bot.say('```' + formattedResults + '```')
+
     @commands.command(help=strings.gatheringNodesDescription)
     async def gatheringNodes(self):
         output = []
