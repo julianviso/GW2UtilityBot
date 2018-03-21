@@ -13,13 +13,13 @@ class Poll:
         if ctx.invoked_subcommand is None:
             await self.bot.say('```' + strings.noCommandFound + '```')
 
-    @poll.command(name="setup", pass_context=True)
+    @poll.command(name="setup", pass_context=True, help=strings.setupDescription)
     async def setup(self, ctx, question, *options: str):
         if len(options) <= 1:
-            await self.bot.say('You need more than one option to make a poll!')
+            await self.bot.say('```' + strings.oneOption + '```')
             return
         if len(options) > 10:
-            await self.bot.say('You cannot make a poll for more than 10 things!')
+            await self.bot.say('```' + strings.tooManyOptions + '```')
             return
 
         if len(options) == 2 and options[0] == 'yes' and options[1] == 'no':
@@ -37,7 +37,7 @@ class Poll:
         embed.set_footer(text='Poll ID: {}'.format(react_message.id))
         await self.bot.edit_message(react_message, embed=embed)
 
-    @poll.command(name="tally", pass_context=True)
+    @poll.command(name="tally", pass_context=True, help=tallyDescription)
     async def tally(self, ctx, id):
         poll_message = await self.bot.get_message(ctx.message.channel, id)
         if not poll_message.embeds:
