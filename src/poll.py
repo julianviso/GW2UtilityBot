@@ -37,7 +37,7 @@ class Poll:
         embed.set_footer(text='Poll ID: {}'.format(react_message.id))
         await self.bot.edit_message(react_message, embed=embed)
 
-    @poll.command(name="tally", pass_context=True, help=tallyDescription)
+    @poll.command(name="tally", pass_context=True, help=strings.tallyDescription)
     async def tally(self, ctx, id):
         poll_message = await self.bot.get_message(ctx.message.channel, id)
         if not poll_message.embeds:
