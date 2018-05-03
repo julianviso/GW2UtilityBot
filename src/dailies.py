@@ -9,6 +9,7 @@ from datetime import datetime
 
 #Utils
 import strings
+from decorators import count
 
 class Dailies():
     def __init__(self, bot):
