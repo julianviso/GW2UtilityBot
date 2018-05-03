@@ -21,7 +21,7 @@ class Lottery:
         await self.bot.create_role(author.server, name="Lottery")
         await self.bot.say('```Lottery role created for server```')
 
-    @lottery.command(name="entry", pass_context=True)
+    @lottery.command(name="entry", hidden=True, pass_context=True)
     async def entry(self, ctx):
         author = ctx.message.author
         role = discord.utils.get(author.server.roles, name="Lottery")
@@ -29,14 +29,11 @@ class Lottery:
         await self.bot.say('```' + str(author) + ' is now in Lottery```')
 
     @lottery.command(name="add", pass_context=True)
-    async def add(self, ctx, *users: str):
-        if len(users) < 1:
-            await self.bot.say('```Need to enter at least one user you want to add to lottery```')
+    async def add(self, ctx, user: discord.Member):
         server = self.bot.get_server(str(ctx.message.author.server.id))
         role = discord.utils.get(server.roles, name="Lottery")
-        for user in users:
-            print(user)
-            await self.bot.add_roles(user, role)
+        await self.bot.add_roles(user, role)
+        await self.bot.say('```Adding ' + str(user) + ' to lottery```')
 
     @lottery.command(name="contestants", pass_context=True)
     async def contestants(self, ctx):
