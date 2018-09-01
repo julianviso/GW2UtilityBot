@@ -32,7 +32,7 @@ class Dailies():
                 readTomorrowsFractals = urlopen("https://api.guildwars2.com/v2/achievements?ids="+str(ids))
                 tomorrowsFractalsData = json.load(readTomorrowsFractals)
                 results.append(tomorrowsFractalsData[0]['name'])
-        formattedResults = "\n".join(itemgetter(0,1,5,9,13,14)(results))
+        formattedResults = "\n".join(itemgetter(0,1,2,6,10,14)(results))
         await self.bot.say('```' + formattedResults + '```')
 
     @daily.command(name="fractals", pass_context=True, help=strings.dailyFractalsDescription)
@@ -46,7 +46,7 @@ class Dailies():
                 readDailyFractals = urlopen("https://api.guildwars2.com/v2/achievements?ids="+str(ids))
                 todaysFractalsData = json.load(readDailyFractals)
                 results.append(todaysFractalsData[0]['name'])
-        formattedResults = "\n".join(itemgetter(0,1,5,9,13,14)(results))
+        formattedResults = "\n".join(itemgetter(0,1,2,6,10,14)(results))
         await self.bot.say('```' + formattedResults + '```')
 
     @daily.command(name="pve", pass_context=True, help=strings.dailyPVEDescription)

@@ -22,7 +22,7 @@ class EasterEggs():
                 readTomorrowsFractals = urlopen("https://api.guildwars2.com/v2/achievements?ids="+str(ids))
                 tomorrowsFractalsData = json.load(readTomorrowsFractals)
                 results.append(tomorrowsFractalsData[0]['name'])
-        formattedResults = "\n".join(itemgetter(0,1,5,9,13,14)(results))
+        formattedResults = "\n".join(itemgetter(0,1,2,6,10,14)(results))
         await self.bot.say('```' + strings.platQuote + '\n\n' + formattedResults + '```')
 
 def setup(bot):
