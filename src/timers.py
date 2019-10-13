@@ -9,7 +9,8 @@ import json
 #Utils
 import strings
 
-class Server():
+#IRI: changed 'Server' to 'timers'
+class timers(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 

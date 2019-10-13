@@ -11,7 +11,7 @@ from datetime import datetime
 import strings
 from decorators import count
 
-class Dailies():
+class Dailies(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 

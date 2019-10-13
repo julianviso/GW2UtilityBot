@@ -7,7 +7,7 @@ from operator import itemgetter
 
 import strings
 
-class EasterEggs():
+class EasterEggs(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 

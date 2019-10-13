@@ -3,8 +3,7 @@ from discord.ext import commands
 
 import strings
 
-class Poll:
-
+class Poll(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
