@@ -18,7 +18,7 @@ class Dailies(commands.Cog):
     @commands.group(name="daily", pass_context=True)
     async def daily(self, ctx):
         if ctx.invoked_subcommand is None:
-            await self.bot.say('```' + strings.noCommandFound + '```')
+            await ctx.send('```' + strings.noCommandFound + '```')
 
 
     @daily.command(name="tomorrowsFractals", pass_context=True, help=strings.tomorrowsFractalsDescription)
@@ -33,7 +33,7 @@ class Dailies(commands.Cog):
                 tomorrowsFractalsData = json.load(readTomorrowsFractals)
                 results.append(tomorrowsFractalsData[0]['name'])
         formattedResults = "\n".join(itemgetter(0,1,2,6,10,14)(results))
-        await self.bot.say('```' + formattedResults + '```')
+        await ctx.send('```' + formattedResults + '```')
 
     @daily.command(name="fractals", pass_context=True, help=strings.dailyFractalsDescription)
     async def dailyFractals(self, ctx):
@@ -47,7 +47,7 @@ class Dailies(commands.Cog):
                 todaysFractalsData = json.load(readDailyFractals)
                 results.append(todaysFractalsData[0]['name'])
         formattedResults = "\n".join(itemgetter(0,1,2,6,10,14)(results))
-        await self.bot.say('```' + formattedResults + '```')
+        await ctx.send('```' + formattedResults + '```')
 
     @daily.command(name="pve", pass_context=True, help=strings.dailyPVEDescription)
     async def dailyPVE(self, ctx):
@@ -60,7 +60,7 @@ class Dailies(commands.Cog):
                 todaysDailyPVE = json.load(readDailyPVE)
                 results.append(todaysDailyPVE[0]['name'])
         formattedResults = "\n".join(results)
-        await self.bot.say('```' + formattedResults + '```')
+        await ctx.send('```' + formattedResults + '```')
 
     @daily.command(name="tomorrowsPVE", pass_context=True, help=strings.tomorrowsPVEDescription)
     async def tomorrowsPVE(self, ctx):
@@ -73,7 +73,7 @@ class Dailies(commands.Cog):
                 tomorrowsPVEData = json.load(readTomorrowsPVE)
                 results.append(tomorrowsPVEData[0]['name'])
         formattedResults = "\n".join(results)
-        await self.bot.say('```' + formattedResults + '```')
+        await ctx.send('```' + formattedResults + '```')
 
     @daily.command(name="pvp", pass_context=True, help=strings.dailyPVPDescription)
     async def dailyPVP(self, ctx):
@@ -86,7 +86,7 @@ class Dailies(commands.Cog):
                 todaysDailyPVP = json.load(readDailyPVP)
                 results.append(todaysDailyPVP[0]['name'])
         formattedResults = "\n".join(results)
-        await self.bot.say('```' + formattedResults + '```')
+        await ctx.send('```' + formattedResults + '```')
 
     @daily.command(name="tomorrowsPVP", pass_context=True, help=strings.tomorrowsPVPDescription)
     async def tomorrowsPVP(self, ctx):
@@ -99,7 +99,7 @@ class Dailies(commands.Cog):
                 tomorrowsPVPData = json.load(readTomorrowsPVP)
                 results.append(tomorrowsPVPData[0]['name'])
         formattedResults = "\n".join(results)
-        await self.bot.say('```' + formattedResults + '```')
+        await ctx.send('```' + formattedResults + '```')
 
     @daily.command(name="wvw", pass_context=True, help=strings.dailyWVWDescription)
     async def dailyWVW(self, ctx):
@@ -112,7 +112,7 @@ class Dailies(commands.Cog):
                 todaysDailyWVW = json.load(readDailyWVW)
                 results.append(todaysDailyWVW[0]['name'])
         formattedResults = "\n".join(results)
-        await self.bot.say('```' + formattedResults + '```')
+        await ctx.send('```' + formattedResults + '```')
 
     @daily.command(name="tomorrowsWVW", pass_context=True)
     async def tomorrowsWVW(self, ctx, help=strings.tomorrowsWVWDescription):
@@ -125,7 +125,7 @@ class Dailies(commands.Cog):
                 tomorrowsWVWData = json.load(readTomorrowsWVW)
                 results.append(tomorrowsWVWData[0]['name'])
         formattedResults = "\n".join(results)
-        await self.bot.say('```' + formattedResults + '```')
+        await ctx.send('```' + formattedResults + '```')
 
     @daily.command(name="psna", pass_context=True, help=strings.psnaDescription)
     async def psna(self, ctx):
@@ -133,7 +133,7 @@ class Dailies(commands.Cog):
         day = datetime.today().weekday()
         with open('data.json') as json_data:
             data = json.load(json_data)
-        await self.bot.say('```\nDaily Pact Supply Network Agent \n' + data['pact_supply_network_agent'][day] + '```')
+        await ctx.send('```\nDaily Pact Supply Network Agent \n' + data['pact_supply_network_agent'][day] + '```')
 
 
     @commands.command(help=strings.gatheringNodesDescription)
@@ -147,7 +147,7 @@ class Dailies(commands.Cog):
             output.extend((name, waypoints))
         message = str(output[0]) + "\n\n" + str(output[1]) + "\n\n" + str(output[2]) + "\n\n" + str(output[3]) + "\n\n" + str(output[4]) + \
             "\n\n" + str(output[5]) + "\n\n" + str(output[6]) + "\n\n" + str(output[7])
-        await self.bot.say('```\nRich Gathering Node Waypoints\n\n' + message + "```")
+        await ctx.send('```\nRich Gathering Node Waypoints\n\n' + message + "```")
    
 def setup(bot):
     bot.add_cog(Dailies(bot))
